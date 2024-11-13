@@ -22,54 +22,54 @@ function CharacterSheet() {
   const [attributes, setAttributes] = useState(attrs)
 
   // idk if attributes can be negative?
-  function handleIncrement(key){
+  function handleIncrement(key) {
     const copy = attributes
     copy[key] += 1
-    setAttributes({...copy})
+    setAttributes({ ...copy })
   }
   function handleDecrement(key) {
     const copy = attributes
     copy[key] -= 1
-    setAttributes({...copy});
+    setAttributes({ ...copy });
   }
 
   let displayAttributes = []
   for (let key in attributes) {
-      displayAttributes.push(<Attribute 
+    displayAttributes.push(<Attribute
       key={key}
-      attr={key} 
+      attr={key}
       value={attributes[key]}
       onIncrement={() => handleIncrement(key)}
       onDecrement={() => handleDecrement(key)}
-      ></Attribute>)
+    ></Attribute>)
   }
 
   return (
     <>
-    <section>
-    <ul>{displayAttributes}</ul>
-    </section>
-    <section>
-    <ClassList></ClassList>
-    </section>
+      <section>
+        <ul>{displayAttributes}</ul>
+      </section>
+      <section>
+        <ClassList></ClassList>
+      </section>
     </>
   )
 }
 
-function Attribute({attr, value, onIncrement, onDecrement}) {
+function Attribute({ attr, value, onIncrement, onDecrement }) {
   return (
     <div>{attr}:
-     {value} 
-     <button onClick={onIncrement}>+</button>
-     <button onClick={onDecrement}>-</button>
+      {value}
+      <button onClick={onIncrement}>+</button>
+      <button onClick={onDecrement}>-</button>
     </div>
   )
 }
 
-function Class({name}) {
-return (
-  <div>{name}</div>
-)
+function Class({ name }) {
+  return (
+    <div>{name}</div>
+  )
 }
 
 function ClassList() {
