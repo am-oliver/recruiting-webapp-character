@@ -10,40 +10,58 @@ function App() {
         <h1>React Coding Exercise</h1>
       </header>
       <section className="Character-sheet">
-          <AttributeList></AttributeList>
-          <ClassList></ClassList>
+        <CharacterSheet></CharacterSheet>
       </section>
     </div>
   );
 }
 
-function Attribute({attr}) {
-  const [value, setValue] = useState(0)
-  function increment(){
-    setValue(value+1);
+function CharacterSheet() {
+  var attrs = {}
+  ATTRIBUTE_LIST.forEach(attr => attrs[attr] = 0)
+  const [attributes, setAttributes] = useState(attrs)
+
+  // idk if attributes can be negative?
+  function handleIncrement(key){
+    const copy = attributes
+    copy[key] += 1
+    setAttributes({...copy})
   }
-  function decrement() {
-    setValue(value-1);
+  function handleDecrement(key) {
+    const copy = attributes
+    copy[key] -= 1
+    setAttributes({...copy});
   }
+
+  let displayAttributes = []
+  for (let key in attributes) {
+      displayAttributes.push(<Attribute 
+      key={key}
+      attr={key} 
+      value={attributes[key]}
+      onIncrement={() => handleIncrement(key)}
+      onDecrement={() => handleDecrement(key)}
+      ></Attribute>)
+  }
+
   return (
-    <div>{attr}:
-     {value} 
-     <button onClick={increment}>+</button>
-     <button onClick={decrement}>-</button>
-    </div>
+    <>
+    <section>
+    <ul>{displayAttributes}</ul>
+    </section>
+    <section>
+    <ClassList></ClassList>
+    </section>
+    </>
   )
 }
 
-function AttributeList() {
-  const attrs = ATTRIBUTE_LIST.map(attr =>
-    <Attribute key={attr} attr={attr}></Attribute>
-  );
+function Attribute({attr, value, onIncrement, onDecrement}) {
   return (
-    <div>
-      <header>
-        <h3>Attributes</h3>
-      </header>
-      {attrs}
+    <div>{attr}:
+     {value} 
+     <button onClick={onIncrement}>+</button>
+     <button onClick={onDecrement}>-</button>
     </div>
   )
 }
@@ -65,10 +83,6 @@ function ClassList() {
       <Class name="Bard"></Class>
     </div>
   )
-}
-
-function CharacterSheet() {
-  
 }
 
 export default App;
