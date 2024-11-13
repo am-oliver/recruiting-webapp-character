@@ -36,6 +36,21 @@
   color: #61dafb;
 }
 
+.Character-sheet {
+  display: flex;
+  flex: 1 1 0;
+  justify-content: space-evenly;
+  background-color: hsl(220deg 13% 13%);
+  color: white;
+  border: 1px solid white;
+}
+
+.Attribute-list {
+  /* flex: 1 1 0; */
+  background-color: hsl(220deg 13% 13%);
+  color: white;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
