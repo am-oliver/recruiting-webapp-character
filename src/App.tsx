@@ -80,7 +80,7 @@ function ClassList() {
       </header>
       <Class name="Barbarian"></Class>
       <Class name="Wizard"></Class>
-      <Class name="Bard"></Class>
+      <Class name="Bard test"></Class>
     </div>
   )
 }
